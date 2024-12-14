@@ -1,9 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { cloneDeep, get, set, isEqual } from 'lodash';
-import { Container, Row } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
+import styled from 'styled-components';
 
 import Game from './game';
 import { initGames, initValue, crossValue, circleValue, fieldsCount, winGames } from '../data/constants';
+
+const ContainerWrapper = styled.div`
+  max-width: 80vh;
+`
 
 export default function Games() {
   const [gamesValues, setGamesValues] = useState(cloneDeep(initGames));
@@ -11,6 +16,14 @@ export default function Games() {
   const [availableGame, setAvailableGame] = useState(false);
   const [nextMoveValue, setNextMoveValue] = useState(crossValue);
   const [globalGamesValue, setGlobalGamesValue] = useState(initValue);
+
+  const restart = () => {
+    setGamesValues(cloneDeep(initGames));
+    setMoves([]);
+    setAvailableGame(false);
+    setNextMoveValue(crossValue);
+    setGlobalGamesValue(initValue);
+  }
 
   const isCrossMove = () => nextMoveValue === crossValue;
   const isGlobalWin = () => globalGamesValue !== initValue;
@@ -96,13 +109,21 @@ export default function Games() {
   const containerRef = useRef(null);
   useEffect(() => {
     setAvailableWidth(containerRef.current ? containerRef.current.offsetWidth : 0);
-  }, [containerRef.current]);
+  }, [containerRef]);
 
   return (
-    <div>
-      <h2 className="text-center">
-        {isCrossMove() ? 'Cross' : 'Circle'} {isGlobalWin() ? 'wins!' : 'takes a move'}
-      </h2>
+    <ContainerWrapper className='mx-auto'>
+      <Row>
+        <Col xs={2} />
+        <Col xs={8}>
+          <h2 className="text-center">
+            {isCrossMove() ? 'Cross' : 'Circle'} {isGlobalWin() ? 'wins!' : 'takes a move'}
+          </h2>
+        </Col>
+        <Col xs={2}>
+          <Button className="btn btn-primary" onClick={restart}>Restart</Button>
+        </Col>
+      </Row>
       <Container ref={containerRef}>
         {gamesValues.map((rowValues, rowIndex) => (
           <Row key={rowIndex}>
@@ -122,6 +143,6 @@ export default function Games() {
           </Row>
         ))}
       </Container>
-    </div>
+    </ContainerWrapper>
   );
 }

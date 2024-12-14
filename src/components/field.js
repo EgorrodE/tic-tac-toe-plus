@@ -38,7 +38,7 @@ export default function Field({
   const containerRef = useRef(null);
   useEffect(() => {
     setAvailableWidth(containerRef.current ? containerRef.current.offsetWidth : 0);
-  }, [containerRef.current]);
+  }, [containerRef]);
 
   const className = () => {
     let result = 'p-0 border-dark';
@@ -58,7 +58,7 @@ export default function Field({
       onClick={() => onFieldClick([fieldRowIndex, fieldIndex])}
     >
       {figureName &&
-        <img src={`${figureName}.svg`} className="w-100 h-100" />
+        <img src={`${figureName}.svg`} alt={`${figureName}`} className="w-100 h-100" />
       }
     </BorderedDiv>
   );

@@ -37,11 +37,11 @@ export default function Game({ values, globalValue, rowIndex, gameIndex, onField
   const containerRef = useRef(null);
   useEffect(() => {
     setAvailableWidth(containerRef.current ? containerRef.current.offsetWidth : 0);
-  }, [containerRef.current]);
+  }, [containerRef]);
 
   const onFieldClickWrapper = (path) => onFieldClick([rowIndex, gameIndex, 'values', ...path]);
   const className = () => {
-    let result = 'position-relative p-4 border-dark';
+    let result = 'position-relative p-2 p-sm-3 p-md-4 border-dark';
     if (gameIndex !== 0) result += ' border-start';
     if (rowIndex !== 0) result += ' border-top';
     if (available && !globalValue) result += ' available';
@@ -74,7 +74,7 @@ export default function Game({ values, globalValue, rowIndex, gameIndex, onField
       ))}
       {figureName && (
         <div className="global-image position-absolute w-100 h-100 top-0 start-0">
-          <img src={`${figureName}.svg`} className="w-100 h-100" />
+          <img src={`${figureName}.svg`} alt={`${figureName}`} className="w-100 h-100" />
         </div>
       )}
     </BorderedDiv>
