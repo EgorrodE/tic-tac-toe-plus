@@ -113,17 +113,18 @@ export default function Games() {
 
   return (
     <ContainerWrapper className='mx-auto'>
-      <Row>
-        <Col xs={2} />
-        <Col xs={8}>
-          <h2 className="text-center">
-            {isCrossMove() ? 'Cross' : 'Circle'} {isGlobalWin() ? 'wins!' : 'takes a move'}
-          </h2>
-        </Col>
-        <Col xs={2}>
-          <Button className="btn btn-primary" onClick={restart}>Restart</Button>
-        </Col>
-      </Row>
+      <Container>
+        <Row className="mb-2">
+          <Col xs={8}>
+            <h2 className="text-start">
+              {isCrossMove() ? 'Cross' : 'Circle'} {isGlobalWin() ? 'wins!' : 'makes a move.'}
+            </h2>
+          </Col>
+          <Col xs={4} className="text-end">
+            <Button className="btn btn-primary" onClick={restart}>Restart</Button>
+          </Col>
+        </Row>
+      </Container>
       <Container ref={containerRef}>
         {gamesValues.map((rowValues, rowIndex) => (
           <Row key={rowIndex}>
