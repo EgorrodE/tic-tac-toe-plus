@@ -3,8 +3,8 @@ import { cloneDeep, get, set, isEqual } from 'lodash';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import styled from 'styled-components';
 
-import Game from './game';
-import { initGames, initValue, crossValue, circleValue, fieldsCount, winGames } from '../data/constants';
+import Game from './Game';
+import { initGames, initValue, crossValue, circleValue, fieldsCount, winGames } from '../../data/constants';
 
 const ContainerWrapper = styled.div`
   max-width: 80vh;

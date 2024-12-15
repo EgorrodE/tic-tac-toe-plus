@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { Col } from 'react-bootstrap';
 
-import figureNameByValue from '../services/figureNameByValue';
+import figureNameByValue from '@services/figureNameByValue';
 
 const BorderedDiv = styled(Col)`
   box-sizing: border-box;

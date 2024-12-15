@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 
-import Field from './field';
-import { initValue } from '../data/constants';
-import figureNameByValue from '../services/figureNameByValue';
+import Field from './Field';
+import { initValue } from '@data/constants';
+import figureNameByValue from '@services/figureNameByValue';
 
 const BorderedDiv = styled(Col)`
   position: relative;
