@@ -1,20 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { cloneDeep, get, set, isEqual } from 'lodash';
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import styled from 'styled-components';
 
 import Game from './Game';
 import { initGames, initValue, crossValue, circleValue, fieldsCount, winGames } from '../../data/constants';
 
-const ContainerWrapper = styled.div`
-  max-width: 80vh;
-`
-
-export default function Games() {
-  const [gamesValues, setGamesValues] = useState(cloneDeep(initGames));
-  const [moves, setMoves] = useState([]);
+export default function Games({ initSession = {} }) {
+  const [gamesValues, setGamesValues] = useState(initSession.gamesValues || cloneDeep(initGames));
+  const [moves, setMoves] = useState(initSession.moves || []);
   const [availableGame, setAvailableGame] = useState(false);
-  const [nextMoveValue, setNextMoveValue] = useState(crossValue);
+  const [nextMoveValue, setNextMoveValue] = useState(initSession.nextMoveValue || crossValue);
   const [globalGamesValue, setGlobalGamesValue] = useState(initValue);
 
   const restart = () => {
@@ -102,7 +97,7 @@ export default function Games() {
     setGamesValues(newValues);
     setMoves([...moves, { path, value: nextMoveValue }]);
     setAvailableGame(nextAvailableGame(newValues, path));
-    setNextMoveValue(isCrossMove() ? circleValue : crossValue);
+    setNextMoveValue((nextMoveValue + 1) % 2);
   };
 
   const [availableWidth, setAvailableWidth] = useState(0);
@@ -112,7 +107,7 @@ export default function Games() {
   }, [containerRef]);
 
   return (
-    <ContainerWrapper className='mx-auto'>
+    <>
       <Container>
         <Row className="mb-2">
           <Col xs={8}>
@@ -144,6 +139,6 @@ export default function Games() {
           </Row>
         ))}
       </Container>
-    </ContainerWrapper>
+    </>
   );
 }

@@ -1,8 +1,8 @@
 import cloneDeep from 'lodash/cloneDeep';
 
-const initValue = 0;
+const initValue = null;
+const circleValue = 0;
 const crossValue = 1;
-const circleValue = 2;
 const fieldsCount = 3;
 const initRow = new Array(fieldsCount).fill(initValue);
 const initGameValues = new Array(fieldsCount).fill().map(() => cloneDeep(initRow));

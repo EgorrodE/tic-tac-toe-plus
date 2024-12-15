@@ -17,6 +17,8 @@ const AuthProvider = ({ children }) => {
     setCurrentUser_(newCurrentUser);
   };
 
+  const axiosUnauthorized = () => !axios.defaults.headers.common['Authorization'];
+
   useEffect(() => {
     if (currentUser && currentUser.token) {
       axios.defaults.headers.common['Authorization'] = currentUser.token;
@@ -31,6 +33,7 @@ const AuthProvider = ({ children }) => {
     () => ({
       currentUser,
       setCurrentUser,
+      axiosUnauthorized,
     }),
     [currentUser]
   );

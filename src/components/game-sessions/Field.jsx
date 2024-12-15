@@ -2,7 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { Col } from 'react-bootstrap';
 
-import figureNameByValue from '@services/figureNameByValue';
+import { initValue } from '@data/constants';
+
+import Figure from './Figure';
 
 const BorderedDiv = styled(Col)`
   box-sizing: border-box;
@@ -32,8 +34,6 @@ export default function Field({
   available,
   isLastMove,
 }) {
-  const figureName = figureNameByValue(value);
-
   const [availableWidth, setAvailableWidth] = useState(0);
   const containerRef = useRef(null);
   useEffect(() => {
@@ -57,9 +57,7 @@ export default function Field({
       xs={4}
       onClick={() => onFieldClick([fieldRowIndex, fieldIndex])}
     >
-      {figureName &&
-        <img src={`${figureName}.svg`} alt={`${figureName}`} className="w-100 h-100" />
-      }
+      {value !== initValue && <Figure value={value} />}
     </BorderedDiv>
   );
 }

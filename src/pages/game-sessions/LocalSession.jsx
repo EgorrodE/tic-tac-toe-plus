@@ -1,5 +1,5 @@
 import Games from '@components/game-sessions/Games';
 
-export default function GameSessionsInProgress() {
+export default function LocalSession() {
   return <Games />;
 }

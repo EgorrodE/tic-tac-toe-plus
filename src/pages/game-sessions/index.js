@@ -1,5 +1,7 @@
-import GameSessionsInProgress from './InProgress';
+import LocalSession from './LocalSession';
+import OnlineSession from './OnlineSession';
 
 export {
-  GameSessionsInProgress,
+  LocalSession,
+  OnlineSession,
 }

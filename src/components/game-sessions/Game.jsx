@@ -2,9 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 
-import Field from './Field';
 import { initValue } from '@data/constants';
 import figureNameByValue from '@services/figureNameByValue';
+
+import Field from './Field';
+import Figure from './Figure';
 
 const BorderedDiv = styled(Col)`
   position: relative;
@@ -73,8 +75,8 @@ export default function Game({ values, globalValue, rowIndex, gameIndex, onField
         </Row>
       ))}
       {figureName && (
-        <div className="global-image position-absolute w-100 h-100 top-0 start-0">
-          <img src={`${figureName}.svg`} alt={`${figureName}`} className="w-100 h-100" />
+        <div className="global-image position-absolute top-0 start-0 w-100 h-100">
+          {globalValue !== initValue && <Figure value={globalValue} />}
         </div>
       )}
     </BorderedDiv>

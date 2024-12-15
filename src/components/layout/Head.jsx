@@ -1,6 +1,7 @@
 import { Container, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-import { ProfileDropdown, LogoutLink } from '@components/users';
+import { ProfileDropdown } from '@components/users';
 
 export default function Head() {
   return (
@@ -10,7 +11,9 @@ export default function Head() {
           <ProfileDropdown />
         </Col>
         <Col xs={6}>
-          <h1 className="text-center">Tic Tac Toe Plus</h1>
+          <Link to='/'>
+            <h1 className="text-center">Tic Tac Toe Plus</h1>
+          </Link>
         </Col>
       </Row>
     </Container>

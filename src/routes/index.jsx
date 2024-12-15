@@ -3,14 +3,23 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { useAuth } from '@providers/authProvider';
 import { ProtectedRoute } from './ProtectedRoute';
 
-import { Login, Logout } from '@pages/users';
-import { GameSessionsInProgress } from '@pages/game-sessions';
+import { Login } from '@pages/users';
+import { LocalSession, OnlineSession } from '@pages/game-sessions';
 import Layout from '@pages/Layout';
+import Home from '@pages/Home';
 
 export default function Routes({ children }) {
   const { currentUser } = useAuth();
 
   const routesForPublic = [
+    {
+      path: "/",
+      element: <Home />,
+    },
+    {
+      path: "/local-game",
+      element: <LocalSession />,
+    },
     {
       path: "/service",
       element: <div>Service Page</div>,
@@ -27,30 +36,18 @@ export default function Routes({ children }) {
       element: <ProtectedRoute />,
       children: [
         {
-          path: "/",
-          element: <div>User Home Page</div>,
-        },
-        {
           path: "/profile",
           element: <div>User Profile</div>,
         },
         {
-          path: "/game-session",
-          element: <GameSessionsInProgress />,
-        },
-        {
-          path: "/logout",
-          element: <Logout />,
+          path: "/online-game",
+          element: <OnlineSession />,
         },
       ],
     },
   ];
 
   const routesForNotAuthenticatedOnly = [
-    {
-      path: "/",
-      element: <div>Home Page</div>,
-    },
     {
       path: "/login",
       element: <Login />,
